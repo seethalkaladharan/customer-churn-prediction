@@ -16,10 +16,31 @@ model = pickle.load(open("final_churn_model.pkl", "rb"))
 # Dark Theme Styling
 # -------------------------
 # 
+#For Adding Material Icons
+st.markdown("""
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+""", unsafe_allow_html=True)
 
 st.markdown("""
 <style>
 
+/* Reduce top padding to lift content upward */
+.block-container {
+    padding-top: 1.5rem;
+}
+
+/* Centered Main Title */
+.main-title {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    color: #00ADB5;
+    margin-bottom: 10px;
+}
+/* Material Icons Color */
+.material-icons {
+    color: #00ADB5;
+}
 /* Main App Background */
 .stApp {
     background-color: #0E1117;
@@ -55,8 +76,19 @@ st.markdown("""
 # -------------------------
 # Title
 # -------------------------
-st.title("📊 Customer Churn Prediction Dashboard")
-st.write("Predict customer churn risk using Machine Learning.")
+st.markdown("""
+<div class="main-title">
+    <span class="material-icons" style="font-size:40px; vertical-align:middle;">
+        analytics
+    </span>
+    Customer Churn Prediction App
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown(
+    "<p style='text-align:center; color:gray;'>Predict customer churn risk using Machine Learning</p>",
+    unsafe_allow_html=True
+)
 
 # -------------------------
 # Layout Columns
@@ -64,7 +96,10 @@ st.write("Predict customer churn risk using Machine Learning.")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.subheader("👤 Customer Profile")
+    st.markdown("""
+<h3><span class="material-icons" style="vertical-align:middle;">person</span>
+Customer Profile</h3>
+""", unsafe_allow_html=True)
     gender = st.selectbox("Gender", ["Male", "Female"])
     senior = st.selectbox("Senior Citizen", [0, 1])
     partner = st.selectbox("Partner", ["Yes", "No"])
@@ -72,7 +107,10 @@ with col1:
     tenure = st.number_input("Tenure (Months)", min_value=0)
 
 with col2:
-    st.subheader("📦 Service Details")
+    st.markdown("""
+<h3><span class="material-icons" style="vertical-align:middle;">settings</span>
+Service Details</h3>
+""", unsafe_allow_html=True))
     phone = st.selectbox("Phone Service", ["Yes", "No"])
     multiple = st.selectbox("Multiple Lines", ["Yes", "No", "No phone service"])
     internet = st.selectbox("Internet Service", ["DSL", "Fiber optic", "No"])
@@ -91,7 +129,10 @@ with col2:
 # -------------------------
 # Contract Section
 # -------------------------
-st.subheader("💳 Contract & Billing")
+st.markdown("""
+<h3><span class="material-icons" style="vertical-align:middle;">credit_card</span>
+Contract & Billing</h3>
+""", unsafe_allow_html=True)
 contract = st.selectbox("Contract Type", ["Month-to-month", "One year", "Two year"])
 paperless = st.selectbox("Paperless Billing", ["Yes", "No"])
 payment = st.selectbox("Payment Method", [
@@ -167,18 +208,35 @@ if st.button("Predict Churn Risk"):
     # -------------------------
     # Display Results
     # -------------------------
-    st.subheader("🔮 Prediction Result")
+    st.markdown("""
+<h3><span class="material-icons" style="vertical-align:middle;">insights</span>
+Prediction Result</h3>
+""", unsafe_allow_html=True)
 
     if prediction == 1:
-        st.error(f"⚠️ High Risk of Churn ({probability:.2%})")
+        st.error(f"High Risk of Churn ({probability:.2%})")
     else:
-        st.success(f"✅ Low Risk of Churn ({probability:.2%})")
+        st.success(f"Low Risk of Churn ({probability:.2%})")
 
-    st.write("### 📊 Rule-Based Risk Score")
+    st.markdown("""
+<h3>
+<span class="material-icons" style="vertical-align:middle;">
+assessment
+</span>
+Rule-Based Risk Score
+</h3>
+""", unsafe_allow_html=True))
     st.write(f"Score: {risk_score} / 5")
     st.write(f"Risk Category: **{risk_category}**")
 
-    st.write("### 💡 Recommendation")
+    st.markdown("""
+<h3>
+<span class="material-icons" style="vertical-align:middle;">
+lightbulb
+</span>
+Recommendation
+</h3>
+""", unsafe_allow_html=True)
     if risk_category == "High":
         st.warning("Offer long-term contract discounts and promote auto-payment methods.")
     elif risk_category == "Medium":
