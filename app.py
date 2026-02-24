@@ -110,7 +110,7 @@ with col2:
     st.markdown("""
 <h3><span class="material-icons" style="vertical-align:middle;">settings</span>
 Service Details</h3>
-""", unsafe_allow_html=True))
+""", unsafe_allow_html=True)
     phone = st.selectbox("Phone Service", ["Yes", "No"])
     multiple = st.selectbox("Multiple Lines", ["Yes", "No", "No phone service"])
     internet = st.selectbox("Internet Service", ["DSL", "Fiber optic", "No"])
