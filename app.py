@@ -197,6 +197,14 @@ if st.button("Predict Churn Risk"):
 
     prediction = model.predict(input_df)[0]
     probability = model.predict_proba(input_df)[0][1]
+    
+    # Risk category based on probability
+    if probability < 0.30:
+        risk_category = "Low"
+    elif probability < 0.60:
+        risk_category = "Medium"
+    else:
+        risk_category = "High"
 
 #REMOVED OLD RISK SCORE USAGE
 # risk_score = calculate_risk_score()
@@ -207,13 +215,7 @@ if st.button("Predict Churn Risk"):
 # else:
 #     risk_category = "High"
 
-# Risk category based on probability
-if probability < 0.30:
-    risk_category = "Low"
-elif probability < 0.60:
-    risk_category = "Medium"
-else:
-    risk_category = "High"
+
 
     # -------------------------
     # Display Results
