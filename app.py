@@ -224,12 +224,15 @@ if st.button("Predict Churn Risk"):
 <h3><span class="material-icons" style="vertical-align:middle;">insights</span>
 Prediction Result</h3>
 """, unsafe_allow_html=True)
-
-    if prediction == 1:
-        st.error(f"High Risk of Churn ({probability:.2%})")
+    
+    if probability < 0.30:
+        st.success(f"✅ Low Risk of Churn ({probability:.2%})")
+    elif probability < 0.60:
+        st.warning(f"⚠️ Medium Risk of Churn ({probability:.2%})")
     else:
-        st.success(f"Low Risk of Churn ({probability:.2%})")
+        st.error(f"🚨 High Risk of Churn ({probability:.2%})")
 
+    
     st.markdown("""
 <h3>
 <span class="material-icons" style="vertical-align:middle;">
