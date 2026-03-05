@@ -195,8 +195,8 @@ if st.button("Predict Churn Risk"):
         "TotalCharges": total
     }])
 
-    prediction = model.predict(input_df)[0]
-    probability = model.predict_proba(input_df)[0][1]
+prediction = model.predict(input_df)[0]
+probability = model.predict_proba(input_df)[0][1]
 
 #REMOVED OLD RISK SCORE USAGE
 # risk_score = calculate_risk_score()
