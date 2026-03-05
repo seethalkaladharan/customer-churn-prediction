@@ -151,21 +151,22 @@ total = tenure * monthly
 # -------------------------
 # Risk Score Logic
 # -------------------------
-def calculate_risk_score():
-    score = 0
+#CHANGED IT DUE TO CONTRADICTION IN PREDICTION
+# def calculate_risk_score():
+#     score = 0
     
-    if contract == "Month-to-month":
-        score += 1
-    if payment == "Electronic check":
-        score += 1
-    if internet == "Fiber optic":
-        score += 1
-    if tenure <= 12:
-        score += 1
-    if monthly > 70:
-        score += 1
+#     if contract == "Month-to-month":
+#         score += 1
+#     if payment == "Electronic check":
+#         score += 1
+#     if internet == "Fiber optic":
+#         score += 1
+#     if tenure <= 12:
+#         score += 1
+#     if monthly > 70:
+#         score += 1
         
-    return score
+#     return score
 
 # -------------------------
 # Prediction Button
@@ -197,14 +198,22 @@ if st.button("Predict Churn Risk"):
     prediction = model.predict(input_df)[0]
     probability = model.predict_proba(input_df)[0][1]
 
-    risk_score = calculate_risk_score()
+#REMOVED OLD RISK SCORE USAGE
+# risk_score = calculate_risk_score()
+# if risk_score <= 1:
+#     risk_category = "Low"
+# elif risk_score <= 3:
+#     risk_category = "Medium"
+# else:
+#     risk_category = "High"
 
-    if risk_score <= 1:
-        risk_category = "Low"
-    elif risk_score <= 3:
-        risk_category = "Medium"
-    else:
-        risk_category = "High"
+# Risk category based on probability
+if probability < 0.30:
+    risk_category = "Low"
+elif probability < 0.60:
+    risk_category = "Medium"
+else:
+    risk_category = "High"
 
     # -------------------------
     # Display Results
@@ -227,7 +236,7 @@ assessment
 Rule-Based Risk Score
 </h3>
 """, unsafe_allow_html=True)
-    st.write(f"Score: {risk_score} / 5")
+    st.write(f"Churn Probability: **{probability:.2%}**")
     st.write(f"Risk Category: **{risk_category}**")
 
     st.markdown("""
