@@ -235,7 +235,7 @@ Prediction Result</h3>
 <span class="material-icons" style="vertical-align:middle;">
 assessment
 </span>
-Rule-Based Risk Score
+Risk Assessment
 </h3>
 """, unsafe_allow_html=True)
     st.write(f"Churn Probability: **{probability:.2%}**")
