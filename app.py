@@ -101,7 +101,8 @@ with col1:
 Customer Profile</h3>
 """, unsafe_allow_html=True)
     gender = st.selectbox("Gender", ["Male", "Female"])
-    senior = st.selectbox("Senior Citizen", [0, 1])
+    senior = st.selectbox("Senior Citizen", ["No", "Yes"])
+    senior = 1 if senior == "Yes" else 0
     partner = st.selectbox("Partner", ["Yes", "No"])
     dependents = st.selectbox("Dependents", ["Yes", "No"])
     tenure = st.number_input("Tenure (Months)", min_value=0)
