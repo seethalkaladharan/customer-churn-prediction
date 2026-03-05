@@ -115,17 +115,17 @@ Service Details</h3>
     phone = st.selectbox("Phone Service", ["Yes", "No"])
     multiple = st.selectbox("Multiple Lines", ["Yes", "No", "No phone service"])
     internet = st.selectbox("Internet Service", ["DSL", "Fiber optic", "No"])
+    tech = st.selectbox("Tech Support", ["Yes", "No", "No internet service"])
+    
+# Hidden service values (default)
+security = "No"
+backup = "No"
+device = "No"
+tv = "No"
+movies = "No"
 
-    if internet == "No":
-        security = backup = device = tech = tv = movies = "No internet service"
-        st.info("No internet service selected — related services auto-disabled.")
-    else:
-        security = st.selectbox("Online Security", ["Yes", "No"])
-        backup = st.selectbox("Online Backup", ["Yes", "No"])
-        device = st.selectbox("Device Protection", ["Yes", "No"])
-        tech = st.selectbox("Tech Support", ["Yes", "No"])
-        tv = st.selectbox("Streaming TV", ["Yes", "No"])
-        movies = st.selectbox("Streaming Movies", ["Yes", "No"])
+if internet == "No":
+    security = backup = device = tech = tv = movies = "No internet service"
 
 # -------------------------
 # Contract Section
